@@ -22,3 +22,8 @@
 **Intended Behavior**: Connect to a database and execute a query.  
 **Issue Type**: Resource leak due to not closing connection.  
 **Notes**: May exhaust connections under heavy load.
+
+## Bug 6 – bug6.c
+**Intended Behavior**: Return the maximum value from an integer array.  
+**Issue Type**: Off-by-one error causing out-of-bounds access.  
+**Notes**: Loop uses `<=` instead of `<`, leading to undefined behavior.
