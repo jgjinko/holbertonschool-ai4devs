@@ -6,11 +6,9 @@ This exercise involved using AI to diagnose and fix six bugs across multiple pro
 
 ## AI Strengths
 
-The AI excelled at diagnosing straightforward, deterministic bugs with clear patterns. **Bug 1 (off-by-one slicing error)**, **Bug 6 (array bounds loop condition)**, and **Bug 2 (missing base case)** were identified quickly and accurately. The AI recognized these as classic programming mistakes and provided correct fixes immediately. For these bugs, the AI's pattern-matching ability—built from exposure to millions of code examples—proved highly effective.
+The AI excelled at diagnosing deterministic bugs with clear patterns. **Bugs 1, 2, and 6** (off-by-one errors and missing base cases) were identified quickly and accurately—classic mistakes where the AI's pattern-matching ability proved highly effective. **Bug 5 (Java type casting)** highlighted another strength: the AI recognized that primitive `int[]` arrays cannot be cast to `Object[]` without explicit boxing, requiring deep knowledge of Java's runtime behavior.
 
-**Bug 5 (Java type casting)** highlighted another strength: the AI understood language-specific type systems and recognized that primitive `int[]` arrays cannot be cast to `Object[]` in Java without explicit boxing. This required deep knowledge of Java's runtime behavior, which the AI demonstrated confidently.
-
-The AI also excelled at **documentation and structure**. Writing consistent bug descriptions, formatted reports, and validation tests was handled seamlessly, showing AI's ability to produce well-organized technical writing at scale.
+Documentation was also a strength. Consistent bug descriptions, formatted reports, and validation tests were produced seamlessly at scale.
 
 ## AI Weaknesses
 
@@ -29,4 +27,4 @@ Human intuition was critical at several junctures:
 
 ## Conclusion
 
-AI is most effective when bugs are deterministic, pattern-based, and well-documented in training data. It excels at rapid identification, parallel processing of multiple bugs, and documentation. However, real-world debugging remains a collaborative process. AI struggles with algorithmic optimizations, language subtleties, and implementation verification. The ideal workflow is: **AI diagnoses and suggests, human verifies and refines**. AI's role in debugging is transformative—it accelerates diagnosis and reduces cognitive load—but it is not a substitute for human expertise. The most powerful approach combines AI's speed and breadth with human intuition about correctness, trade-offs, and business context. For junior developers, AI serves as an excellent teaching tool; for senior developers, it's a productivity multiplier. Together, they form a more capable debugging team than either could alone.
+AI excels when bugs are deterministic, pattern-based, and well-documented in training data. It rapidly identifies issues, processes multiple bugs in parallel, and generates high-quality documentation. However, real-world debugging remains collaborative. AI struggles with algorithmic optimizations, language subtleties, and implementation verification. The ideal workflow: **AI diagnoses and suggests; human verifies and refines**. AI's role in debugging is transformative—it accelerates diagnosis and reduces cognitive load—but it is not a substitute for human expertise. The most powerful approach combines AI's speed and breadth with human intuition about correctness, trade-offs, and context. For junior developers, AI is an excellent teaching tool; for senior developers, a productivity multiplier. Together, they form a more capable debugging team than either could alone.
