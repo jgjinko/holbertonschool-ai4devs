@@ -1,21 +1,39 @@
 // bug4.cs
-// Type: Off-by-One Error
-
+// Type: Null reference when file is empty
+// Intended Behavior: Read lines from a file and count words.
+// Issue: Does not handle empty or missing files gracefully.
 using System;
-
+using System.IO;
+using System.Linq;
 class Program
 {
-    static void PrintElements(string[] items)
+    static int CountWordsInFile(string filePath)
     {
-        for (int i = 0; i <= items.Length; i++)
+        // Bug: Does not check if file is empty or null
+        // This causes a NullReferenceException when file is empty
+        string[] lines = File.ReadAllLines(filePath);
+        
+        int wordCount = 0;
+        foreach (string line in lines)
         {
-            Console.WriteLine("Item: " + items[i]);
+            // Null reference exception occurs here if lines is null or empty
+            wordCount += line.Split(' ').Length;
         }
+        
+        return wordCount;
     }
 
     static void Main()
     {
-        string[] fruits = { "Apple", "Banana", "Cherry" };
-        PrintElements(fruits);
+        string filePath = "input.txt";
+        try
+        {
+            int words = CountWordsInFile(filePath);
+            Console.WriteLine("Total words: " + words);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
     }
 }

@@ -1,35 +1,22 @@
 # bug1.py
-# Type: Syntax Error
+# Type: Off-by-one error
+# Intended Behavior: Return the last n items of a list.
+# Issue: The function fails when n == len(items) due to incorrect slicing.
 
-def greet_user(name):
-    print("Hello, " + name)
+def get_last_n_items(items, n):
+    """Return the last n items of a list."""
+    # Off-by-one error: should be len(items) - n, not len(items) - n - 1
+    start_index = len(items) - n - 1
+    return items[start_index:]
 
 def main():
-    user_name = input("Enter your name: ")
-    greet_user(user_name)
-
-    # ask for the user's age and report it
-    try:
-        age = int(input("Enter your age: "))
-        print(f"You are {age} years old.")
-    except ValueError:
-        print("Invalid age provided.")
-
-    # offer additional greetings in a loop
-    while True:
-        answer = input("Do you want another greeting? (y/n): ").lower()
-        if answer == "y":
-            user_name = input("Enter your name: ")
-            greet_user(user_name)
-        elif answer == "n":
-            break
-        else:
-            print("Please answer 'y' or 'n'.")
-
-    if user_name == "Admin"
-        print("Welcome back, Admin!")
-
-    print("Program finished.")
+    my_list = [1, 2, 3, 4, 5]
+    
+    # This works fine
+    print("Last 2 items:", get_last_n_items(my_list, 2))
+    
+    # This fails when n == len(items)
+    print("Last 5 items:", get_last_n_items(my_list, 5))
 
 if __name__ == "__main__":
     main() 

@@ -1,23 +1,18 @@
 // bug2.js
-// Type: Logical Error
+// Type: Missing base case leading to infinite recursion
+// Intended Behavior: Calculate the factorial of a number using recursion.
+// Issue: Input of 0 causes a stack overflow due to missing base case.
 
-function calculateAverage(numbers) {
-    let total = 0;
-
-    for (let i = 0; i < numbers.length; i++) {
-        total += numbers[i];
-    }
-
-    // Logical mistake: dividing by 2 instead of numbers.length
-    let average = total / 2;
-
-    return average;
+function factorial(n) {
+    // Missing base case: should check if (n === 0) return 1;
+    // This causes infinite recursion when n reaches 0 or negative numbers
+    return n * factorial(n - 1);
 }
 
 function main() {
-    const grades = [80, 90, 100, 70];
-    const avg = calculateAverage(grades);
-    console.log("Average grade:", avg);
+    console.log("Factorial of 5:", factorial(5));
+    // Uncommenting the line below will cause a stack overflow:
+    // console.log("Factorial of 0:", factorial(0));
 }
 
 main();
