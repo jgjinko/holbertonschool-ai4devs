@@ -1,7 +1,10 @@
-// bug5.java
+// Bug 5 – bug5.java
+// ==================
 // Type: Misuse of Data Types / Type Mismatch
 // Intended Behavior: Connect to a database and execute a query.
 // Issue: Passing incompatible data types to database methods.
+// Notes: The executeQuery method casts an int[] array to Object[], which
+//        causes type incompatibility since String.format expects Object[].
 
 import java.sql.*;
 

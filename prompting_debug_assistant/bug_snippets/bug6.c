@@ -1,7 +1,10 @@
-// bug6.c
+// Bug 6 – bug6.c
+// ===============
 // Type: Off-by-one error and buffer overflow
 // Intended Behavior: Find the maximum element in an array.
 // Issue: Incorrectly uses <= in loop condition causing out-of-bounds access.
+// Notes: The loop condition 'i <= n' allows accessing arr[n], which is beyond
+//        the valid array bounds (0 to n-1), resulting in undefined behavior.
 
 #include <stdio.h>
 

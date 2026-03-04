@@ -1,7 +1,10 @@
-// bug3.cpp
+// Bug 3 – bug3.cpp
+// =================
 // Type: Incorrect pivot selection causing poor performance
 // Intended Behavior: Sort an array of integers using quicksort.
 // Issue: Worst-case O(n²) behavior on already sorted arrays.
+// Notes: The function always selects the first element as the pivot,
+//        which degrades to O(n²) when the input is already sorted.
 #include <iostream>
 using namespace std;
 void quickSort(int arr[], int low, int high) {
