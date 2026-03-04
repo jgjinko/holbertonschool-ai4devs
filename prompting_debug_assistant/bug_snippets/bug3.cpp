@@ -35,8 +35,6 @@ int main() {
     int n = 5;
     quickSort(numbers, 0, n - 1); 
     for (int i = 0; i < n; i++) {
-        cout << numbers[i] << " ";
-    }
+        cout << numbers[i] << " ";}
     cout << endl; 
-    return 0;
-}
+    return 0;}
