@@ -1,10 +1,8 @@
 // bug4_fixed.cs
 // Fixed version of bug4.cs
-
 using System;
 using System.IO;
 using System.Linq;
-
 class Program
 {
     static int CountWordsInFile(string filePath)
@@ -26,7 +24,6 @@ class Program
         }
         return wordCount;
     }
-
     static void Main()
     {
         string filePath = "input.txt";
