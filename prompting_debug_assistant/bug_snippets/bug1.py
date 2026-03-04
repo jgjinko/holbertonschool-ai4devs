@@ -1,7 +1,8 @@
 # Bug 1 – bug1.py
 # ================
 # Type: Off-by-one error
-# Intended Behavior: Return the last n items of a list.
+# Intended Behavior: When n equals the list length, the function should return all items intact.
+#                   For example, get_last_n_items([1,2,3,4,5], 5) should return [1,2,3,4,5].
 # Issue: The function fails when n == len(items) due to incorrect slicing.
 # Notes: The bug occurs because start_index calculation subtracts one too many,
 #        causing the function to skip the first item when n equals list length.

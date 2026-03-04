@@ -1,7 +1,8 @@
 // Bug 5 – bug5.java
 // ==================
 // Type: Misuse of Data Types / Type Mismatch
-// Intended Behavior: Connect to a database and execute a query.
+// Intended Behavior: The executeQuery method should accept integer parameters and properly
+//                   format them into the SQL query string (e.g., "SELECT * FROM users WHERE id = 5 AND age = 25").
 // Issue: Passing incompatible data types to database methods.
 // Notes: The executeQuery method casts an int[] array to Object[], which
 //        causes type incompatibility since String.format expects Object[].

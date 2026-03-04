@@ -1,7 +1,8 @@
 // Bug 3 – bug3.cpp
 // =================
 // Type: Incorrect pivot selection causing poor performance
-// Intended Behavior: Sort an array of integers using quicksort.
+// Intended Behavior: The quicksort should efficiently sort arrays in O(n log n) average time,
+//                   even when the input is already sorted (e.g., [1,2,3,4,5]).
 // Issue: Worst-case O(n²) behavior on already sorted arrays.
 // Notes: The function always selects the first element as the pivot,
 //        which degrades to O(n²) when the input is already sorted.

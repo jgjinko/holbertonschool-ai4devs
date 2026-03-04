@@ -1,7 +1,8 @@
 // Bug 4 – bug4.cs
 // ================
 // Type: Null reference when file is empty
-// Intended Behavior: Read lines from a file and count words.
+// Intended Behavior: When the file is empty (contains 0 bytes), the function should
+//                   return a word count of 0 without throwing an exception.
 // Issue: Does not handle empty or missing files gracefully.
 // Notes: File.ReadAllLines returns an empty array (not null) for empty files,
 //        but the code does not validate this condition, leading to incorrect counts.
