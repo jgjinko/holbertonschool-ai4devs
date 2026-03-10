@@ -1,0 +1,39 @@
+# Technical Specification: CarpoolConnect
+
+## System Architecture Diagram
+```mermaid
+graph TD
+    subgraph Client_Layer
+        A[Mobile App - iOS/Android]
+        B[Web Dashboard - Admin/Sustainability]
+    end
+
+    subgraph API_Gateway_Layer
+        C[API Gateway / Load Balancer]
+    end
+
+    subgraph Service_Layer
+        D[Auth Service - SSO/OIDC]
+        E[Matching Engine - Geo-Spatial]
+        F[Commute Service - Trip Lifecycle]
+        G[Analytics Service - ESG/Metrics]
+    end
+
+    subgraph Data_Layer
+        H[(User DB - PostgreSQL)]
+        I[(Ride DB - MongoDB)]
+        J[(Geo-Cache - Redis)]
+    end
+
+    subgraph External_Integrations
+        K[Azure AD / Okta]
+        L[Google Maps API]
+    end
+
+    A & B --> C
+    C --> D & E & F & G
+    D --> K
+    E --> L
+    E --> J
+    F --> I
+    G --> H & I
