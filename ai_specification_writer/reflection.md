@@ -20,9 +20,9 @@ The AI also suffered from "feature bloat," inserting generic social media featur
 
 Output quality directly correlated with prompt granularity. Analysis revealed two distinct prompt categories based on inter-dependency complexity, with dramatically different success rates.
 
-**Easier Prompts (High Success)**: Broad structural requests following established patterns yielded excellent results. For example, "Draft 8 user stories in Role-Goal-Benefit format" produced consistent, professional output because the AI followed a well-defined linguistic template. Such prompts work because they leverage familiar writing conventions.
+**Easier Prompts (High Success)**: Broad structural requests following established patterns yielded excellent results. Example: "Draft 8 user stories in Role-Goal-Benefit format" produced consistent, professional output because the AI followed a well-defined linguistic template. These succeed because they leverage familiar writing conventions independently, without requiring memory of previous content. **Actionable insight**: Break down complex requests into standalone, pattern-based prompts rather than attempting cross-referential validation in single prompts.
 
-**Harder Prompts (Low Success)**: Logic-intensive, inter-dependent requests consistently failed. When prompted to "Ensure API parameters in section 4 match Data Model primary keys in section 3," results were inconsistent. The AI struggles to "look back" at previous definitions and ensure functional alignment across technical domains. These prompts require cross-referential reasoning that exceeds the AI's current capabilities.
+**Harder Prompts (Low Success)**: Logic-intensive, inter-dependent requests consistently failed. Example: "Ensure API parameters in section 4 match Data Model primary keys in section 3" produced inconsistent results. The AI struggles to "look back" and ensure functional alignment across technical domains. These prompts require cross-referential reasoning that exceeds current capabilities. **Actionable insight**: Avoid dependency-heavy validation prompts; instead, generate content separately and assign humans to verify cross-functional consistency.
 
 ## Key Prompt Elements for High-Fidelity Specifications
 
@@ -38,16 +38,28 @@ Achieving quality AI output requires four essential pillars in prompt constructi
 
 ## Real-World Success and Failure Examples
 
-**Success**: The AI perfectly mapped relationships between Auth Service and Identity Providers (Okta, Azure AD), recognizing SSO and automatic user provisioning requirements without detailed explanation.
+**Success Case & Learning**: The AI perfectly mapped relationships between Auth Service and Identity Providers (Okta, Azure AD), recognizing SSO and automatic user provisioning requirements without detailed explanation. **Key learning**: When domain knowledge is common in training data (enterprise SSO is standard), AI excels without explicit guidance. **Implication**: Leverage AI for well-established patterns; provide heavier curation for novel or domain-specific logic.
 
-**Failure**: The AI conflated distinct data needs—blending Sustainability Officer requirements (aggregate $CO_2$ for ESG reporting) with HR Manager needs (satisfaction metrics) into a single confusing dashboard, requiring significant human intervention.
+**Failure Case & Learning**: The AI conflated distinct data needs—blending Sustainability Officer requirements (aggregate $CO_2$ for ESG reporting) with HR Manager needs (satisfaction metrics) into a single confusing dashboard. **Root cause**: The system cannot distinguish between semantically different data contexts when both roles are mentioned. **Key learning**: Explicitly separate user personas into isolated prompts rather than mentioning multiple roles in single requests. **Guideline**: Create separate specification drafts per user role, then consolidate intentionally instead of allowing the AI to synthesize automatically.
 
 ## The Human Role: Logical Gatekeeper
 
 Manual refinement was essential—humans provided precision while AI generated text. When the AI suggested finding "nearby" matches, I refined this into: "within a 2-mile radius of the commute path," translating qualitative goals into quantitative requirements. I also enforced security boundaries, linking "Parking Optimization" explicitly to facility hardware via QR codes rather than leaving it as vague software concept.
 
+## Future Improvements for AI Systems
+
+Based on observed shortfalls, several architectural improvements could enhance AI-assisted specification writing:
+
+1. **Cross-Document Consistency Checking**: Future AI systems should maintain a "specification registry" tracking defined terms, entities, and constraints. This would enable genuine cross-referential validation rather than independent text generation.
+
+2. **Context-Aware Template Matching**: Instead of defaulting to consumer-facing patterns, AI should detect domain markers ("corporate," "SSO," "ESG") and constrain pattern selection accordingly.
+
+3. **Explicit Role Separation**: Build systems that generate distinct specification branches per user role, automatically flagging overlaps for human consolidation rather than auto-merging distinct contexts.
+
+4. **Iterative Validation Loops**: Enable prompts that ask the AI to "generate X, then validate against Y," with built-in failure reporting when validation fails, rather than silent inconsistencies.
+
 ## Recommendations and Conclusion
 
-Adopt a "Glossary-First" approach: define immutable terms at session start for consistency. Use Chain-of-Thought prompting—ask the AI to outline mathematical logic before writing user stories, yielding more cohesive acceptance criteria.
+Adopt a "Glossary-First" approach: define immutable terms at session start for consistency. Use Chain-of-Thought prompting—ask the AI to outline mathematical logic before writing user stories, yielding more cohesive acceptance criteria. Decompose inter-dependent requirements into isolated prompt batches, then manually consolidate.
 
 In conclusion, AI is a powerful accelerant but the human remains the architect. The most effective path leverages AI's speed for boilerplate while reserving human cognition for complex logic, security constraints, and judgment defining successful enterprise products.
