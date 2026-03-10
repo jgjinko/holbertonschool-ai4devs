@@ -16,19 +16,25 @@ The AI displayed significant terminological drift due to processing text as inde
 
 The AI also suffered from "feature bloat," inserting generic social media features like "public profiles" that contradicted the secure, corporate context. This reflects its tendency to default to common training patterns (consumer apps) rather than adhering to specific enterprise constraints.
 
-## The Influence of Prompt Structure
+## Prompt Types: Easier vs. Harder Prompts
 
-Output quality directly correlated with prompt granularity. Two distinct prompt types emerged based on inter-dependency requirements.
+Output quality directly correlated with prompt granularity. Analysis revealed two distinct prompt categories based on inter-dependency complexity, with dramatically different success rates.
 
-**Easier Prompts (High Success)**: Broad structural requests following known patterns worked excellently. "Draft 8 user stories in Role-Goal-Benefit format" produced consistent, professional results because the AI followed a well-defined linguistic template.
+**Easier Prompts (High Success)**: Broad structural requests following established patterns yielded excellent results. For example, "Draft 8 user stories in Role-Goal-Benefit format" produced consistent, professional output because the AI followed a well-defined linguistic template. Such prompts work because they leverage familiar writing conventions.
 
-**Harder Prompts (Low Success)**: Logic-intensive, inter-dependent requests failed. "Ensure API parameters in section 4 match Data Model primary keys in section 3" produced inconsistencies—the AI struggles to "look back" and ensure functional alignment across technical domains.
+**Harder Prompts (Low Success)**: Logic-intensive, inter-dependent requests consistently failed. When prompted to "Ensure API parameters in section 4 match Data Model primary keys in section 3," results were inconsistent. The AI struggles to "look back" at previous definitions and ensure functional alignment across technical domains. These prompts require cross-referential reasoning that exceeds the AI's current capabilities.
 
-**Key Prompt Elements** for high-fidelity specifications:
-- **Role Identity**: "Act as a Senior Systems Architect"
-- **Environmental Context**: "Closed-loop corporate environment using SSO"
-- **Strict Constraints**: "Provide exactly 3 features; exclude social media functions"
-- **Structural Templates**: "Format as [Role], [Goal], [Benefit]"
+## Key Prompt Elements for High-Fidelity Specifications
+
+Achieving quality AI output requires four essential pillars in prompt construction:
+
+1. **Role Identity**: Explicitly define a context role like "Act as a Senior Systems Architect" or "Enterprise Sustainability Consultant" to anchor the AI's perspective.
+
+2. **Environmental Context**: Provide specific project boundaries, such as "This is a closed-loop corporate environment using SSO authentication" to constrain scope.
+
+3. **Strict Constraints**: Use negative constraints like "Provide exactly 3 features; exclude generic social media functions" to prevent pattern bias.
+
+4. **Structural Templates**: Specify exact formatting, such as "Format each user story as [Role], [Goal], [Benefit]" to ensure consistency.
 
 ## Real-World Success and Failure Examples
 
