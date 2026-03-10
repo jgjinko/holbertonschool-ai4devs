@@ -10,23 +10,29 @@ The process began with a simple product idea that was iteratively refined throug
 
 ## AI Strengths and Weaknesses
 
-The AI excelled at **rapid structural scaffolding**, addressing the "blank page" problem by synthesizing concepts into standardized formats like User Stories and API Specifications. Without explicit prompting, it recognized that an enterprise platform would require OIDC-compliant authentication and geo-spatial matching engines. The generation of Mermaid diagrams and mathematical precision with LaTeX variables demonstrated strong technical intuition.
+The AI excelled at **rapid structural scaffolding**, addressing the "blank page" problem by synthesizing concepts into standardized formats. Without prompting, it recognized enterprise requirements like OIDC authentication and geo-spatial matching engines. However, the AI suffered from **terminological drift**—defining entities as "Ride" in user stories but "Trip" or "Booking" in API endpoints, a critical failure for production databases.
 
-However, the AI suffered from **terminological drift**. For example, it would define entities as "Ride" in user stories but reference them as "Trip" or "Booking" in API endpoints—a critical inconsistency in production environments. The AI also exhibited **pattern-matching bias**, defaulting to generic social features like "public profiles" that contradicted the secure, enterprise context of the brief.
+## Prompt Granularity: What Works and What Doesn't
 
-## The Human Role
+**Easier Prompts** (High-success): Structural requests following known patterns yielded excellent results. Example: "Draft user stories in Role-Goal-Benefit format" produced consistent, professional output.
 
-While the AI generated text, humans provided the essential *precision*. My primary responsibility was stripping away polite filler and replacing it with testable, hard requirements. When the AI suggested users find "nearby" matches, I refined this into a concrete constraint: "within a 2-mile radius of the commute path." This translation from qualitative goals to quantitative requirements represents where human architectural judgment proves indispensable.
+**Harder Prompts** (Low-success): Logic-intensive, inter-dependent requests failed. Example: "Ensure API parameters in section 4 match primary keys in the Data Model section 3" resulted in inconsistencies as the AI treats each response as isolated.
 
-Human oversight also enforced security boundaries and ensured every documented feature served specific business objectives. The human role has shifted from writing specifications to editing for intent and accuracy.
+## Real-World Success and Failure Examples
 
-## Key Lessons Learned
+**Success**: The AI perfectly mapped relationships between the Auth Service and corporate Identity Providers (Okta, Azure AD), recognizing SSO requirements without explicit guidance.
 
-The quality of AI output directly correlates with **prompt granularity**. High-level structural requests produced excellent results, while logic-intensive, inter-dependent requests often failed as the AI treated each response as an isolated task, losing context.
+**Failure**: The AI initially confused data needs—blending the Sustainability Officer's aggregate $CO_2$ metrics with the HR Manager's satisfaction analytics into a single confusing dashboard, requiring significant human correction.
 
-**Iterative refinement proved essential**—the specification evolved significantly across multiple refinement cycles, each improving quality and coherence. Vague requests produced generic output, while specific, detailed prompts yielded useful specifications.
+## The Human Role: Logical Gatekeeper
 
-For future work, I recommend a **"Glossary-First" approach**—defining immutable terms at the start forces terminological consistency. Additionally, **Chain-of-Thought prompting**, asking the AI to outline logic before writing user stories, produces far more cohesive acceptance criteria.
+While AI generated text, humans provided essential *precision*. When the AI suggested users find "nearby" matches, I refined this into: "within a 2-mile radius of the commute path"—translating qualitative goals into quantitative requirements. Human judgment proved indispensable for enforcing security boundaries and ensuring every feature served specific business objectives.
+
+## Recommendations for Future Work
+
+For improved AI-assisted specification writing, I recommend a **"Glossary-First" approach**: define immutable terms at the session start to force terminological consistency across all sections. Additionally, employ **Chain-of-Thought prompting**—ask the AI to outline mathematical or logical frameworks *before* writing user stories or API specifications. This produces far more cohesive acceptance criteria and reduces the pattern-matching bias toward generic solutions.
+
+The fundamental principle: **iterative refinement through specific feedback** is essential. Vague requests produce generic output; precise requests yield targeted, useful specifications.
 
 ## Conclusion
 
