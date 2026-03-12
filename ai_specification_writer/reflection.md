@@ -26,29 +26,23 @@ The most critical insight: avoid asking AI to consolidate multiple user personas
 
 ## Key Prompt Elements for High-Fidelity Specifications
 
-Four essential pillars emerged as critical for quality AI output:
+Four pillars proved critical for quality output:
 
-1. **Role Identity**: Explicitly define context like "Act as a Senior Systems Architect" or "Enterprise Sustainability Consultant" to anchor perspective and constrain scope.
+1. **Role Identity**: Define context like "Act as a Senior Systems Architect" to anchor perspective.
+2. **Environmental Context**: Specify boundaries—"closed-loop corporate environment with SSO"—to prevent consumer-app assumptions.
+3. **Strict Constraints**: Use negative constraints—"exclude generic social media functions"—to fight pattern bias.
+4. **Structural Templates**: Specify formatting—"[Role], [Goal], [Benefit]"—to ensure consistency.
 
-2. **Environmental Context**: Provide specific project boundaries—"This is a closed-loop corporate environment using SSO authentication"—to prevent the AI from defaulting to consumer-app assumptions.
-
-3. **Strict Constraints**: Use negative constraints like "Provide exactly 3 features; exclude generic social media functions" to actively fight pattern bias.
-
-4. **Structural Templates**: Specify precise formatting such as "Format each user story as [Role], [Goal], [Benefit]" to ensure consistency and reduce drift.
-
-These elements directly improved output quality. When I added explicit role identity and constraints, terminology remained consistent; when I omitted them, the AI reverted to generic patterns.
+These elements directly improved output quality and reduced terminological drift.
 
 ## Future Improvements for AI Systems
 
-Based on observed limitations, several architectural improvements could enhance AI-assisted specification writing:
+Based on observed limitations:
 
-1. **Cross-Document Consistency Registries**: Future AI systems should maintain a "specification registry" tracking defined terms, entities, and constraints across the entire document. This would enable genuine cross-referential validation rather than independent text generation.
-
-2. **Context-Aware Template Matching**: Instead of defaulting to consumer-facing patterns, systems should detect domain markers ("corporate," "SSO," "ESG") and constrain pattern selection accordingly.
-
-3. **Explicit Role Separation in Generation**: Build systems that generate distinct specification branches per user persona, automatically flagging overlaps for human consolidation rather than silently auto-merging distinct contexts.
-
-4. **Iterative Validation Loops**: Enable prompts structured as "generate X, then validate against Y," with built-in failure reporting when validation fails, rather than silent inconsistencies.
+1. **Consistency Registries**: Maintain a registry tracking defined terms and constraints to enable cross-referential validation.
+2. **Context-Aware Patterns**: Detect domain markers ("corporate," "SSO") to constrain pattern selection beyond consumer defaults.
+3. **Role Separation**: Generate distinct branches per persona, flagging overlaps for human consolidation.
+4. **Validation Loops**: Structure prompts as "generate X, then validate against Y" with failure reporting.
 
 ## Lessons Learned
 
@@ -66,4 +60,4 @@ Based on observed limitations, several architectural improvements could enhance 
 
 ## Conclusion
 
-AI is a powerful accelerant, not a replacement. The most effective specifications leverage AI's speed for structural scaffolding while maintaining humans as architects of complex logic, security, and domain precision. CarpoolConnect succeeded not despite this hybrid approach, but because of it. The future of specification writing lies not in full automation, but in thoughtfully orchestrated human-AI collaboration where each plays to its strengths.
+AI is a powerful accelerant, not a replacement. The most effective specifications leverage AI's speed for structural work while maintaining humans as architects of logic, security, and domain precision. CarpoolConnect succeeded because of this hybrid approach.
