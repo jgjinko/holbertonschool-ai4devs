@@ -20,14 +20,6 @@ Another limitation was pattern bias. Even when the system was clearly defined as
 
 A more significant weakness appeared when prompts required cross-referencing between sections. When asked to verify that API parameters matched data model fields, the AI frequently produced inconsistent results. This highlighted a limitation in maintaining strict logical alignment across multiple parts of a technical specification.
 
-## Influence of Structure on AI Output
-
-Prompt structure had a major influence on output quality. Simple, pattern-based prompts consistently produced strong results. For instance, asking the AI to generate user stories using a specific template resulted in clear, well-organized outputs.
-
-However, prompts requiring cross-document reasoning or validation were less reliable. Tasks such as verifying that API parameters matched data model definitions often produced mismatches. The AI performed best when requests were broken into smaller, independent steps rather than requiring complex reasoning across document sections.
-
-This experience emphasized the importance of designing prompts with clear structure, constraints, and formatting instructions.
-
 ## Human Role
 
 Human refinement was essential in converting AI-generated drafts into reliable specifications. Many AI suggestions were conceptually useful but lacked measurable detail. For example, vague requirements like “find nearby matches” needed translation into precise constraints such as “within two miles of the commute route and within a ±30-minute departure window.”
@@ -35,12 +27,6 @@ Human refinement was essential in converting AI-generated drafts into reliable s
 Humans also grounded abstract features in real infrastructure. Concepts like “parking optimization” required clarification through specific implementations such as QR-based parking access or integration with corporate facility systems.
 
 Most importantly, human review ensured enterprise security standards and organizational constraints were applied consistently throughout the document.
-
-## Future Improvements
-
-Several improvements could strengthen AI-assisted specification tools. One approach is using terminology registries that track defined system terms and enforce consistent usage across sections. Another is stronger context awareness so domain indicators such as “enterprise” or “corporate environment” guide the AI away from consumer-style patterns.
-
-AI systems could also benefit from built-in validation mechanisms that compare generated content across sections, helping detect mismatches between APIs, data models, and requirements.
 
 ## Lessons Learned
 
