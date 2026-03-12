@@ -18,6 +18,14 @@ Second: **pattern bias and feature bloat**. Despite explicit enterprise constrai
 
 Third: **cross-referential validation failure**. When asked to "Ensure API parameters match data model definitions," AI produced inconsistent results. It struggles with backward-looking consistency checks across technical domains—a fundamental limitation for specifications requiring logical coherence across sections.
 
+## Prompt Structure: Easier vs. Harder Types
+
+Output quality directly correlated with prompt structure. **Easier prompts** (broad structural requests following established patterns) consistently succeeded. Example: "Draft 8 user stories in Role-Goal-Benefit format" produced professional output because it leveraged a well-defined linguistic template independently.
+
+**Harder prompts** (logic-intensive, inter-dependent requests) consistently failed. Example: "Ensure API parameters match data models" required cross-referential reasoning that exceeded current AI capabilities. The AI struggles to "look back" and validate consistency across technical domains.
+
+Key insight: Break complex requests into standalone, pattern-based prompts rather than attempting cross-referential validation in single prompts.
+
 ## Human Role: The Essential Gatekeeper
 
 Manual refinement was essential and frequent. When AI vaguely suggested "finding nearby matches," I quantified it: "within 2 miles of the commute path." When "Parking Optimization" remained ambiguous, I anchored it to concrete facility hardware and QR codes. Humans translated qualitative business goals into quantitative technical requirements while enforcing security boundaries the AI overlooked.
@@ -33,7 +41,7 @@ Four pillars proved critical for quality output:
 3. **Strict Constraints**: Use negative constraints—"exclude generic social media functions"—to fight pattern bias.
 4. **Structural Templates**: Specify formatting—"[Role], [Goal], [Benefit]"—to ensure consistency.
 
-These elements directly improved output quality and reduced terminological drift.
+When I added explicit role identity and constraints, terminology remained consistent; when I omitted them, the AI reverted to generic patterns. Environmental context proved especially powerful—specifying "closed-loop corporate environment" explicitly constrained the AI away from consumer-facing assumptions that plagued early iterations.
 
 ## Future Improvements for AI Systems
 
