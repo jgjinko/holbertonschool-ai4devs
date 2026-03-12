@@ -18,6 +18,20 @@ Second: **pattern bias and feature bloat**. Despite explicit enterprise constrai
 
 Third: **cross-referential validation failure**. When asked to "Ensure API parameters match data model definitions," AI produced inconsistent results. It struggles with backward-looking consistency checks across technical domains—a fundamental limitation for specifications requiring logical coherence across sections.
 
+## Prompt Types: Easier vs. Harder Prompts
+
+Output quality directly correlated with prompt structure complexity. **Easier prompts** (broad, pattern-based requests) succeeded consistently. Example: "Draft 8 user stories in Role-Goal-Benefit format for a carpooling application" produced professional, consistent output at ~80% completion. These succeed because they leverage well-defined linguistic templates that don't require cross-referential memory.
+
+**Harder prompts** (logic-intensive, inter-dependent validation) consistently failed. Example: "Ensure all API endpoint parameters match the Data Model primary keys defined in Section 3" produced misaligned results. The AI cannot maintain coherence across document sections or "look back" to validate consistency.
+
+Key actionable insight: Decompose complex requests into standalone, pattern-based prompts rather than attempting validation across sections in single requests.
+
+## Real-World Success and Failure Examples
+
+**Success Case**: The AI perfectly synthesized authentication requirements, independently identifying SSO integration with Okta and Azure AD, including automatic user provisioning workflows. I provided minimal guidance—just the domain context. This succeeded because enterprise SSO is a well-established pattern in training data.
+
+**Failure Case**: When asked to generate requirements for both Sustainability Officers and HR Managers simultaneously, the AI conflated distinct needs—merging $CO_2$ aggregate reporting (for ESG) with satisfaction metrics (for HR) into a single incoherent dashboard. Root cause: the system cannot distinguish between semantically different contexts when multiple personas are mentioned. Solution: generate separate specifications per role, then consolidate intentionally.
+
 ## Human Role: The Essential Gatekeeper
 
 Manual refinement was essential and frequent. When AI vaguely suggested "finding nearby matches," I quantified it: "within 2 miles of the commute path." When "Parking Optimization" remained ambiguous, I anchored it to concrete facility hardware and QR codes. Humans translated qualitative business goals into quantitative technical requirements while enforcing security boundaries the AI overlooked.
@@ -33,7 +47,7 @@ Four pillars proved critical for quality output:
 3. **Strict Constraints**: Use negative constraints—"exclude generic social media functions"—to fight pattern bias.
 4. **Structural Templates**: Specify formatting—"[Role], [Goal], [Benefit]"—to ensure consistency.
 
-These elements directly improved output quality and reduced terminological drift.
+These elements directly improved output quality. When I applied all four pillars, terminology remained consistent across sections. When omitted, the AI reverted to generic patterns. Environmental context proved most powerful—specifying "closed-loop corporate environment" explicitly constrained the AI away from consumer-facing assumptions that plagued early iterations.
 
 ## Future Improvements for AI Systems
 
