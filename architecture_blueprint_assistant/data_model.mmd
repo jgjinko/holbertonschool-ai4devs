@@ -1,0 +1,6 @@
+erDiagram
+  USER ||--o{ SALES_CHANNEL : manages
+  SALES_CHANNEL ||--o{ PRODUCT : syncs
+  SALES_CHANNEL ||--o{ ORDER : receives
+  PRODUCT ||--o{ ORDER : included_in
+  PRODUCT ||--o{ INVENTORY_LEVEL : tracks

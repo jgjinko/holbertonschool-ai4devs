@@ -1,5 +1,4 @@
 # Data Model
-
 - **User**: id, email, password_hash, mfa_enabled, role, created_at
 - **Sales Channel**: id, user_id, platform_name (Shopify/Amazon/TikTok), api_credentials_encrypted, webhook_url, sync_latency_status
 - **Product**: id, user_id, base_sku, name, description, category, cogs (Cost of Goods Sold), unit_price
