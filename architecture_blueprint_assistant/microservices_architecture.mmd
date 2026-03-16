@@ -1,0 +1,17 @@
+graph TD
+  A[API Gateway] --> B(Auth Service)
+  A --> C(Inventory Sync Service)
+  A --> D(Geographic Intelligence Service)
+  A --> E(Predictive Analytics Service)
+  A --> F(Order Reconciler Service)
+  A --> G(Notification Service)
+  B --> H[(Auth DB)]
+  C --> I[(Inventory Sync DB)]
+  D --> J[(Geographic DB)]
+  E --> K[(Predictive Analytics DB)]
+  F --> L[(Order Reconciler DB)]
+  G --> M[(Notification DB)]
+  C --> N[External Channel APIs: Shopify/Amazon/TikTok]
+  D --> O[Mapbox / Google Maps API]
+  E --> P[AI Integration: OpenAI/Anthropic]
+  G --> Q[Messaging APIs: SendGrid/Twilio]
