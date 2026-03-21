@@ -1,0 +1,89 @@
+{
+  "info": {
+    "name": "StockSync API Collection",
+    "description": "API collection for multi-channel inventory management testing.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List Inventory",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/inventory?limit=20&offset=0",
+          "host": ["{{baseUrl}}"],
+          "path": ["inventory"],
+          "query": [
+            { "key": "limit", "value": "20" },
+            { "key": "offset", "value": "0" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create SKU",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sku\": \"NEW-PRODUCT-01\",\n  \"name\": \"Sample Item\",\n  \"total_stock\": 100,\n  \"channels\": [{\"platform\": \"Shopify\", \"stock\": 100}]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/inventory",
+          "host": ["{{baseUrl}}"],
+          "path": ["inventory"]
+        }
+      }
+    },
+    {
+      "name": "Get SKU Detail",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/inventory/WJK01",
+          "host": ["{{baseUrl}}"],
+          "path": ["inventory", "WJK01"]
+        }
+      }
+    },
+    {
+      "name": "Update Stock",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"total_stock\": 500\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/inventory/WJK01",
+          "host": ["{{baseUrl}}"],
+          "path": ["inventory", "WJK01"]
+        }
+      }
+    },
+    {
+      "name": "Delete SKU",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/inventory/WJK01",
+          "host": ["{{baseUrl}}"],
+          "path": ["inventory", "WJK01"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
