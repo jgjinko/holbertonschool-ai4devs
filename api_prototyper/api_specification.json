@@ -2,8 +2,8 @@
   "openapi": "3.0.3",
   "info": {
     "title": "StockSync API",
-    "version": "1.1.0",
-    "description": "Multi-channel inventory management and analytics API."
+    "version": "1.2.0",
+    "description": "Multi-channel inventory management and analytics API with full pagination and error handling."
   },
   "components": {
     "securitySchemes": {
@@ -33,12 +33,24 @@
           }
         }
       },
-      "BulkUpdateItem": {
+      "PaginatedInventory": {
         "type": "object",
-        "required": ["sku", "adjustment"],
         "properties": {
-          "sku": { "type": "string" },
-          "adjustment": { "type": "integer" }
+          "total": { "type": "integer" },
+          "limit": { "type": "integer" },
+          "offset": { "type": "integer" },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/InventoryItem" }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "integer" },
+          "error": { "type": "string" },
+          "message": { "type": "string" }
         }
       }
     }
@@ -48,29 +60,38 @@
   ],
   "paths": {
     "/inventory": {
-      "get": { "summary": "1. READ (List)" },
-      "post": { "summary": "2. CREATE" }
+      "get": {
+        "summary": "1. READ (List)",
+        "parameters": [
+          { "in": "query", "name": "limit", "schema": { "type": "integer", "default": 20 } },
+          { "in": "query", "name": "offset", "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PaginatedInventory" } } }
+          },
+          "401": { "description": "Unauthorized", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      },
+      "post": {
+        "summary": "2. CREATE",
+        "responses": {
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      }
     },
     "/inventory/{sku}": {
-      "get": { "summary": "3. READ (Detail)" },
-      "patch": { "summary": "4. UPDATE" },
-      "delete": { "summary": "5. DELETE" }
-    },
-    "/inventory/bulk": {
-      "put": {
-        "summary": "6. BULK UPDATE",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": { "$ref": "#/components/schemas/BulkUpdateItem" }
-              }
-            }
-          }
-        },
-        "responses": { "200": { "description": "Success" } }
-      }
+      "get": {
+        "summary": "3. READ (Detail)",
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/InventoryItem" } } } },
+          "404": { "description": "Not Found", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+        }
+      },
+      "patch": { "summary": "4. UPDATE", "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } } },
+      "delete": { "summary": "5. DELETE", "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } } }
     }
   }
 }

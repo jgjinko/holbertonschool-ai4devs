@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
   title: StockSync API
-  version: 1.1.0
-  description: Multi-channel inventory management and analytics API.
+  version: 1.2.0
+  description: Multi-channel inventory management and analytics API with full pagination and error handling.
 components:
   securitySchemes:
     bearerAuth:
@@ -14,33 +14,37 @@ components:
       type: object
       required: [sku, name]
       properties:
-        sku: { type: string }
-        name: { type: string }
-        total_stock: { type: integer }
+        sku: { type: string, example: "WJK01" }
+        name: { type: string, example: "Winter Jacket" }
+        total_stock: { type: integer, example: 150 }
         channels:
           type: array
           items:
             type: object
             properties:
-              platform: { type: string, example: "Amazon" }
-              stock: { type: integer }
-    BulkUpdateItem:
+              platform: { type: string, example: "Shopify" }
+              stock: { type: integer, example: 50 }
+    PaginatedInventory:
       type: object
-      required: [sku, adjustment]
       properties:
-        sku: { type: string }
-        adjustment: { type: integer }
+        total: { type: integer, example: 100 }
+        limit: { type: integer, example: 20 }
+        offset: { type: integer, example: 0 }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/InventoryItem' }
     ErrorResponse:
       type: object
       properties:
-        status: { type: integer }
-        message: { type: string }
+        status: { type: integer, example: 400 }
+        error: { type: string, example: "Bad Request" }
+        message: { type: string, example: "Invalid SKU format provided." }
 security:
   - bearerAuth: []
 paths:
   /inventory:
     get:
-      summary: 1. READ (List) - List all products (Paginated)
+      summary: 1. READ (List) - Get all products with pagination
       parameters:
         - in: query
           name: limit
@@ -50,16 +54,17 @@ paths:
           schema: { type: integer, default: 0 }
       responses:
         '200':
-          description: Successful response
+          description: A paginated list of inventory items.
           content:
             application/json:
-              schema:
-                type: array
-                items: { $ref: '#/components/schemas/InventoryItem' }
+              schema: { $ref: '#/components/schemas/PaginatedInventory' }
         '401':
-          description: Unauthorized access
+          description: Unauthorized - Valid JWT required.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
     post:
-      summary: 2. CREATE - Create a new product SKU
+      summary: 2. CREATE - Create a new inventory record
       requestBody:
         required: true
         content:
@@ -67,10 +72,17 @@ paths:
             schema: { $ref: '#/components/schemas/InventoryItem' }
       responses:
         '201':
-          description: Product successfully created
+          description: Created successfully.
+        '400':
+          description: Validation error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '401':
+          description: Unauthorized.
   /inventory/{sku}:
     get:
-      summary: 3. READ (Detail) - Retrieve specific SKU details
+      summary: 3. READ (Detail) - Get detailed info for a specific SKU
       parameters:
         - in: path
           name: sku
@@ -78,9 +90,17 @@ paths:
           schema: { type: string }
       responses:
         '200':
-          description: Product details retrieved
+          description: OK.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/InventoryItem' }
+        '404':
+          description: Product not found.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
     patch:
-      summary: 4. UPDATE - Manually adjust single SKU stock
+      summary: 4. UPDATE - Partially update stock levels or details
       parameters:
         - in: path
           name: sku
@@ -92,10 +112,14 @@ paths:
             schema:
               type: object
               properties:
-                adjustment: { type: integer, example: -5 }
+                total_stock: { type: integer }
       responses:
         '200':
-          description: Stock level updated
+          description: Updated successfully.
+        '400':
+          description: Invalid update data.
+        '404':
+          description: Product not found.
     delete:
       summary: 5. DELETE - Remove a SKU from the system
       parameters:
@@ -105,17 +129,6 @@ paths:
           schema: { type: string }
       responses:
         '204':
-          description: Product deleted
-  /inventory/bulk:
-    put:
-      summary: 6. BULK UPDATE - Update multiple SKUs at once
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items: { $ref: '#/components/schemas/BulkUpdateItem' }
-      responses:
-        '200':
-          description: Bulk stock adjustment successful
+          description: No Content - Successfully deleted.
+        '404':
+          description: Product not found.
