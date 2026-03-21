@@ -1,0 +1,20 @@
+Mockup Description for Inventory Manager (Version 3 - Better Usability)
+
+Enhanced usability for Inventory Manager.
+
+Changes:
+- AI-generated reorder alerts
+- Automated purchase order drafts
+- Improved search with fuzzy matching
+
+Layout:
+- Smart table with predictive stock levels
+- Automated workflow suggestions
+- Enhanced search and filter UI
+
+Hierarchy:
+- Primary: Smart data table with alerts
+- Secondary: Automation tools
+
+Usability:
+- Automated suggestions, quick draft creation, better error prevention

@@ -1,0 +1,15 @@
+Mockup Description for Geographic Intelligence (Version 1 - Basic Layout)
+
+Basic wireframe of the Geographic Intelligence map screen.
+
+Layout:
+- Top: Filters for date, SKU, channel
+- Center: Map with heatmaps
+- Bottom: Legend and summary stats
+
+Hierarchy:
+- Primary: Map visualization
+- Secondary: Filters and stats
+
+Usability:
+- Basic zoom and filter controls

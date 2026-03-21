@@ -1,0 +1,20 @@
+Mockup Description for Geographic Intelligence (Version 2 - Improved Layout)
+
+Improved layout for Geographic Intelligence.
+
+Changes:
+- Interactive Mapbox integration with better controls
+- Added overlay options for different data layers
+- Improved filter panel
+
+Layout:
+- Top: Comprehensive filter bar
+- Center: Interactive map with multiple overlays
+- Bottom: Data insights and export options
+
+Hierarchy:
+- Primary: Map with overlays
+- Secondary: Filters and insights
+
+Usability:
+- Better zoom, layer toggles, data export

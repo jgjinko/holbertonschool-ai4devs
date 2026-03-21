@@ -1,0 +1,20 @@
+Mockup Description for Inventory Manager (Version 2 - Improved Layout)
+
+Improved layout for Inventory Manager.
+
+Changes:
+- High-density table with better column organization
+- Expandable side panels for details
+- Added bulk actions toolbar
+
+Layout:
+- Top: Advanced filters and bulk actions
+- Center: Enhanced data table with inline editing
+- Side: Detailed view panel
+
+Hierarchy:
+- Primary: Data table with actions
+- Secondary: Filters and details
+
+Usability:
+- Inline editing, better sorting options

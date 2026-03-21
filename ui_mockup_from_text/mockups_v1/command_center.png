@@ -1,0 +1,15 @@
+Mockup Description for Command Center (Version 1 - Basic Layout)
+
+This is a basic wireframe of the Command Center dashboard for StockSync.
+
+Layout:
+- Top: Header with logo and user menu
+- Center: Grid of KPI cards showing total revenue, sync status, active alerts
+- Bottom: List of recent activities
+
+Hierarchy:
+- Primary: KPI cards
+- Secondary: Activity list
+
+Usability:
+- Simple navigation, basic buttons

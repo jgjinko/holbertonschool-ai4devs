@@ -1,0 +1,20 @@
+Mockup Description for Command Center (Version 2 - Improved Layout)
+
+Improved layout of the Command Center dashboard.
+
+Changes:
+- Modular grid layout for better responsiveness
+- Added sidebar for quick actions
+- Better spacing and alignment
+
+Layout:
+- Left sidebar: Quick sync status and alerts
+- Center: KPI dashboard with charts
+- Right: Recent activities and AI insights
+
+Hierarchy:
+- Primary: KPI charts
+- Secondary: Sidebar and activities
+
+Usability:
+- Improved navigation with tabs, enhanced buttons

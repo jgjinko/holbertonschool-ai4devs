@@ -1,0 +1,15 @@
+Mockup Description for Inventory Manager (Version 1 - Basic Layout)
+
+Basic wireframe of the Inventory Manager screen.
+
+Layout:
+- Top: Search bar and filters
+- Center: Table with SKU, stock levels, channels
+- Side: Quick look panel
+
+Hierarchy:
+- Primary: Data table
+- Secondary: Filters and side panel
+
+Usability:
+- Basic sorting and filtering
