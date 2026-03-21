@@ -1,0 +1,4 @@
+Heuristic,Score (1–5),Notes
+Visual hierarchy,4,"Primary KPIs and ""Welcome"" header are very clear. The use of a dark sidebar creates a strong focal point. However, some action buttons (like ""Restock Now"") are visually smaller than informational labels, which may slow down user action."
+Learnability & flow,5,"Excellent use of standard SaaS patterns. The left-to-right, top-to-bottom flow is intuitive. A new user would immediately understand that navigation is on the left, search is on top, and actionable data is in the center."
+Accessibility,3,Color contrast for status (Red/Green) is helpful but might be difficult for color-blind users without additional icons. Some secondary text (dates and SKU sub-labels) uses a light grey that may be borderline for readability.
