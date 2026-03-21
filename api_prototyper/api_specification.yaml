@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: StockSync API
-  version: 1.0.0
+  version: 1.1.0
   description: Multi-channel inventory management and analytics API.
 components:
   securitySchemes:
@@ -24,6 +24,12 @@ components:
             properties:
               platform: { type: string, example: "Amazon" }
               stock: { type: integer }
+    BulkUpdateItem:
+      type: object
+      required: [sku, adjustment]
+      properties:
+        sku: { type: string }
+        adjustment: { type: integer }
     ErrorResponse:
       type: object
       properties:
@@ -34,7 +40,7 @@ security:
 paths:
   /inventory:
     get:
-      summary: List all products (Paginated)
+      summary: 1. READ (List) - List all products (Paginated)
       parameters:
         - in: query
           name: limit
@@ -52,11 +58,8 @@ paths:
                 items: { $ref: '#/components/schemas/InventoryItem' }
         '401':
           description: Unauthorized access
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
     post:
-      summary: Create a new product SKU
+      summary: 2. CREATE - Create a new product SKU
       requestBody:
         required: true
         content:
@@ -67,7 +70,7 @@ paths:
           description: Product successfully created
   /inventory/{sku}:
     get:
-      summary: Retrieve specific SKU details
+      summary: 3. READ (Detail) - Retrieve specific SKU details
       parameters:
         - in: path
           name: sku
@@ -76,13 +79,8 @@ paths:
       responses:
         '200':
           description: Product details retrieved
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/InventoryItem' }
-        '404':
-          description: Product not found
     patch:
-      summary: Manually adjust stock levels
+      summary: 4. UPDATE - Manually adjust single SKU stock
       parameters:
         - in: path
           name: sku
@@ -99,7 +97,7 @@ paths:
         '200':
           description: Stock level updated
     delete:
-      summary: Remove a SKU from the system
+      summary: 5. DELETE - Remove a SKU from the system
       parameters:
         - in: path
           name: sku
@@ -108,3 +106,16 @@ paths:
       responses:
         '204':
           description: Product deleted
+  /inventory/bulk:
+    put:
+      summary: 6. BULK UPDATE - Update multiple SKUs at once
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: { $ref: '#/components/schemas/BulkUpdateItem' }
+      responses:
+        '200':
+          description: Bulk stock adjustment successful
