@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "StockSync API",
+    "version": "1.0.0",
+    "description": "Multi-channel inventory management and analytics API."
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "InventoryItem": {
+        "type": "object",
+        "required": ["sku", "name"],
+        "properties": {
+          "sku": { "type": "string" },
+          "name": { "type": "string" },
+          "total_stock": { "type": "integer" },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "platform": { "type": "string", "example": "Amazon" },
+                "stock": { "type": "integer" }
+              }
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "integer" },
+          "message": { "type": "string" }
+        }
+      }
+    }
+  },
+  "security": [
+    { "bearerAuth": [] }
+  ],
+  "paths": {
+    "/inventory": {
+      "get": {
+        "summary": "List all products (Paginated)",
+        "parameters": [
+          { "in": "query", "name": "limit", "schema": { "type": "integer", "default": 20 } },
+          { "in": "query", "name": "offset", "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/InventoryItem" } }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new product SKU",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/InventoryItem" } }
+          }
+        },
+        "responses": { "201": { "description": "Product successfully created" } }
+      }
+    },
+    "/inventory/{sku}": {
+      "get": {
+        "summary": "Retrieve specific SKU details",
+        "parameters": [
+          { "in": "path", "name": "sku", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product details retrieved",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/InventoryItem" } }
+            }
+          },
+          "404": { "description": "Product not found" }
+        }
+      },
+      "patch": {
+        "summary": "Manually adjust stock levels",
+        "parameters": [
+          { "in": "path", "name": "sku", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": { "adjustment": { "type": "integer", "example": -5 } }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Stock level updated" } }
+      },
+      "delete": {
+        "summary": "Remove a SKU from the system",
+        "parameters": [
+          { "in": "path", "name": "sku", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "204": { "description": "Product deleted" } }
+      }
+    }
+  }
+}
