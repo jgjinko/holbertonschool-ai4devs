@@ -1,5 +1,5 @@
+mkdir -p with_ai && cat << 'EOF' > with_ai/notes.md
 # AI-Assisted Development Notes
-
 
 These solutions were implemented using GitHub Copilot to evaluate the efficiency gain of an AI coding assistant.
 
@@ -15,3 +15,4 @@ These solutions were implemented using GitHub Copilot to evaluate the efficiency
 - **Efficiency**: The total development time dropped from **44 minutes (manual)** to **7 minutes (AI)**, a speed increase of approximately 84%.
 - **Pattern Recognition**: The AI consistently suggested modern ES6+ patterns (like arrow functions and optional chaining) that were more concise than the manual baseline.
 - **Role Shift**: My role shifted from "Writer" to "Reviewer," spending more time reading the generated code for edge-case safety than actually typing syntax.
+EOF
