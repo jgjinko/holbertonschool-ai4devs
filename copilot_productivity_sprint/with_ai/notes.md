@@ -1,17 +1,16 @@
 # AI-Assisted Development Notes
 
+These solutions were implemented using GitHub Copilot to evaluate the efficiency gain of an AI coding assistant.
 
-This log tracks the interaction with the AI coding assistant to solve the benchmark tasks.
-
-| Task | Prompt Used | AI Dev Time | Notes |
+| Task | AI Dev Time | Prompts Used | Notes |
 | :--- | :--- | :--- | :--- |
-| **Task 1** | "Write a JS function to validate email domain against a whitelist. Trim input, case-insensitive, return false if invalid." | 1.5 min | Copilot provided the split/destructuring pattern instantly. I just had to verify the `@` count logic. |
-| **Task 2** | "Create a function to aggregate transaction amounts by category from an array of objects. Round to 2 decimals." | 2 min | The AI initially forgot the empty array check; I had to add the optional chaining `?.length`. |
-| **Task 3** | "Regex to extract markdown links [text](url) but ignore images starting with ! in JS." | 3 min | The AI generated the negative lookbehind correctly on the first try, saving significant manual testing time. |
+| **Task 1** | 1.5 minutes | "JS function to validate email domain against a whitelist. Trim input, case-insensitive." | Copilot suggested the array destructuring `[user, domain]` which made the logic very clean. |
+| **Task 2** | 2 minutes | "Function to aggregate transaction amounts by category from array of objects, round to 2 decimals." | The assistant favored `.reduce()`. I had to manually add a check for `null` inputs to meet the criteria. |
+| **Task 3** | 3.5 minutes | "Regex to extract markdown links [text](url) but ignore images starting with ! in JS." | The AI generated the negative lookbehind `(?<!\!)` perfectly on the first try, which saved the most time. |
 
-**Total AI-Assisted Effort: 6.5 Minutes**
+**Total AI-Assisted Effort: 7 Minutes**
 
-### Comparison Observations
-- **Speed**: AI support reduced development time from 44 minutes to under 7 minutes (an 84% reduction).
-- **Conciseness**: The AI favored modern ES6+ syntax (`reduce`, `matchAll`, destructuring) which resulted in fewer lines of code.
-- **Verification**: The primary "human" role shifted from writing syntax to verifying edge cases (e.g., ensuring `null` inputs don't crash the script).
+### Observations
+- **Efficiency**: The total development time dropped from **44 minutes (manual)** to **7 minutes (AI)**, a speed increase of approximately 84%.
+- **Pattern Recognition**: The AI consistently suggested modern ES6+ patterns (like arrow functions and optional chaining) that were more concise than the manual baseline.
+- **Role Shift**: My role shifted from "Writer" to "Reviewer," spending more time reading the generated code for edge-case safety than actually typing syntax.
