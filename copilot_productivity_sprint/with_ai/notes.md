@@ -1,5 +1,6 @@
 # AI-Assisted Development Notes
 
+
 These solutions were implemented using GitHub Copilot to evaluate the efficiency gain of an AI coding assistant.
 
 | Task | AI Dev Time | Prompts Used | Notes |
