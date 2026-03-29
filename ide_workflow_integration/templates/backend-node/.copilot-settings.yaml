@@ -1,0 +1,10 @@
+languages:
+  javascript:
+    style_guide: "commonjs"
+    validation_library: "zod"
+    rules:
+      - "Every route must have a try/catch block."
+      - "Always sanitize req.body using the defined schema."
+workflows:
+  api_audit:
+    focus_areas: ["security", "error-handling"]
