@@ -12,8 +12,13 @@ This algorithm calculates the **Estimated Days of Stock (EDS)** for a given prod
 ---
 
 ## Input Format (JSON)
-The algorithm expects a standardized object containing the product ID, current stock levels, and a list of daily sales records:
-```json
+{
+  "product_id": "SKU-99887",
+  "daily_velocity": 10.5,
+  "estimated_days_remaining": 14,
+  "out_of_stock_date": "2026-04-29",
+  "status": "OK"
+}
 {
   "product_id": "SKU-99887",
   "current_stock": 150,
