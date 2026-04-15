@@ -1,24 +1,22 @@
 # Cross-Language Specification - Weighted Inventory Sales Forecaster
 
-## Algorithm Description
-This algorithm calculates the **Estimated Days of Stock (EDS)** for a given product. It uses a weighted moving average of sales over the last 30 days to determine daily velocity, then divides current inventory by that velocity to predict when a restock is required.
+## 1. Algorithm Description
+This algorithm calculates the **Estimated Days of Stock (EDS)** for a specific product. It uses a weighted moving average of sales data from the last 30 days to determine current sales velocity, then divides the current inventory by that velocity to predict the stock exhaustion date.
 
-### Logic
-1.  **Velocity_Recent**: Calculate average units sold per day over the last 7 days.
-2.  **Velocity_Monthly**: Calculate average units sold per day over the last 30 days.
-3.  **Weighted_Velocity**: Compute $(0.7 \times Velocity\_Recent) + (0.3 \times Velocity\_Monthly)$.
-4.  **EDS Calculation**: $Current\_Stock / Weighted\_Velocity$.
+### Calculation Logic
+1.  **Recent Velocity** ($V_{recent}$): The average units sold per day over the last **7 days**.
+2.  **Monthly Velocity** ($V_{monthly}$): The average units sold per day over the last **30 days**.
+3.  **Weighted Velocity** ($V_{weighted}$): A blend of both averages to account for recent trends: 
+    $$V_{weighted} = (0.7 \times V_{recent}) + (0.3 \times V_{monthly})$$
+4.  **Estimated Days of Stock (EDS)**: 
+    $$EDS = \frac{Current\_Stock}{V_{weighted}}$$
 
 ---
 
-## Input Format (JSON)
-{
-  "product_id": "SKU-99887",
-  "daily_velocity": 10.5,
-  "estimated_days_remaining": 14,
-  "out_of_stock_date": "2026-04-29",
-  "status": "OK"
-}
+## 2. Input Format (JSON)
+The algorithm expects a JSON object containing the product identifier, current physical stock, and a chronological list of sales entries.
+
+```json
 {
   "product_id": "SKU-99887",
   "current_stock": 150,
