@@ -10,26 +10,26 @@ This document prioritizes the technical and security risks found in the legacy c
 - **Notes**: This is the most critical security flaw. An attacker can bypass authentication or dump the entire database. Requires a shift to PDO or MySQLi with prepared statements.
 
 ## 2. PHP Version Incompatibility (Hard Deprecations)
-- **Description**: The codebase utilizes the `mysql_` extension and relies on the `register_globals` directive, both of which were deprecated and removed in modern PHP (7.x and 8.x).
+- **Description**: The codebase utilizes the `mysql_` extension and relies on the `register_globals` directive, both of which were removed in modern PHP (7.x and 8.x).
 - **Severity**: High
 - **Notes**: The system is physically unable to run on modern, secure server environments. This forces the business to use outdated, vulnerable server software.
 
 ## 3. Absence of Automated Testing Suite
-- **Description**: There are zero unit, integration, or end-to-end tests within the repository.
+- **Description**: There are zero unit, integration, or end-to-end tests within the repository, meaning all verification is manual.
 - **Severity**: High
-- **Notes**: Any attempt to refactor the legacy "spaghetti" code carries a high risk of regression. Manual testing is currently the only safeguard, which is slow and prone to human error.
+- **Notes**: Any attempt to refactor the legacy "spaghetti" code carries a high risk of regression. Manual testing is slow and prone to human error, making modernization dangerous.
 
-## 4. Cross-Site Scripting (XSS)
-- **Description**: Input received from users (such as product reviews or customer profiles) is rendered back to the browser without consistent output encoding.
-- **Severity**: Medium
-- **Notes**: Attackers can inject malicious JavaScript to steal session cookies. Modern templating engines like Twig or Blade should be used to enforce automatic escaping.
+## 4. Insecure Password Hashing & Storage
+- **Description**: User and administrator passwords are stored using outdated cryptographic algorithms (like plain MD5 or unsalted hashes) rather than modern, slow-hashing algorithms.
+- **Severity**: High
+- **Notes**: In the event of a database leak, passwords can be recovered almost instantly using rainbow tables. Must be updated to use `password_hash()` with Bcrypt or Argon2.
 
-## 5. Tight Coupling and Global State
-- **Description**: Logic is heavily dependent on the `$GLOBALS` array and the massive `application_top.php` bootstrap file, which handles everything from sessions to currencies.
+## 5. Cross-Site Scripting (XSS)
+- **Description**: Input received from users is rendered back to the browser without consistent output encoding or context-aware escaping.
 - **Severity**: Medium
-- **Notes**: This makes the code "brittle." Changing a variable in one section often causes unexpected failures in unrelated modules. This prevents the adoption of a clean Model-View-Controller (MVC) architecture.
+- **Notes**: Attackers can inject malicious JavaScript to steal session cookies or deface the site. Modern templating engines should be implemented to enforce automatic escaping.
 
-## 6. Lack of Secure Session Management
-- **Description**: Session IDs are often passed via URLs (SID), and the application lacks modern flags like `HttpOnly` or `SameSite` for cookies.
+## 6. Tight Coupling and Global State
+- **Description**: Business logic is heavily dependent on the `$GLOBALS` array and the massive `application_top.php` bootstrap file, creating a monolithic structure.
 - **Severity**: Medium
-- **Notes**: Increases the risk of session hijacking and fixation attacks. Session handling should be moved to a standard, secure library rather than custom procedural functions.
+- **Notes**: This creates "brittle" code where changing a variable in one section causes unexpected failures elsewhere. It prevents the use of modern MVC patterns or dependency injection.
