@@ -1,0 +1,1 @@
+public class Bug3Check { public static void main(String[] args) { int passed = 0; if (bug3_fixed.firstUniqueChar("swiss") == "w".charAt(0)) passed++; if (bug3_fixed.firstUniqueChar("aabbcc") == "".charAt(0)) passed++; if (bug3_fixed.firstUniqueChar("") == "".charAt(0)) passed++; System.out.println("bug3_fixed.java: " + passed + "/3 passed"); }}
