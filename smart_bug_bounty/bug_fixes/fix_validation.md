@@ -10,8 +10,8 @@
 
 ## bug2.js
 - **Original Issue**: Truthy check skipped valid falsy overrides (`0`, `false`, `""`).
-- **Fix Applied**: Replaced truthy condition with own-property check and direct assignment.
-- **Test Results**: Automated JavaScript tests passed (`3/3`) using a user-space Node runtime.
+- **Fix Applied**: Replaced truthy condition with own-property check and direct assignment using nullish coalescing or explicit check.
+- **Test Results**: Automated JavaScript tests passed (`3/3`).
   - `{ retries: 3, verbose: true } + { retries: 0 }` → `{ retries: 0, verbose: true }`
   - `{ enabled: true, timeout: 10 } + { enabled: false }` → `{ enabled: false, timeout: 10 }`
   - `{ timeoutMs: 5000 } + { timeoutMs: 0 }` → `{ timeoutMs: 0 }`
@@ -19,7 +19,7 @@
 ## bug3.java
 - **Original Issue**: Returned first character when no unique char existed; unsafe for empty input.
 - **Fix Applied**: Added empty/null guard and return sentinel `'\0'` when no unique character is found.
-- **Test Results**: Automated Java tests passed (`3/3`) using a user-space JDK.
+- **Test Results**: Automated Java tests passed (`3/3`).
   - `firstUniqueChar("swiss")` → `'w'`
   - `firstUniqueChar("aabbcc")` → `'\0'`
   - `firstUniqueChar("")` → `'\0'`
@@ -27,7 +27,7 @@
 ## bug4.go
 - **Original Issue**: Integer division truncated success ratio before float conversion.
 - **Fix Applied**: Cast operands to `float64` before division.
-- **Test Results**: Automated Go unit test passed (`3/3`) using a user-space Go runtime.
+- **Test Results**: Automated Go unit test passed (`3/3`).
   - `successRate(9, 2)` ≈ `77.7778`
   - `successRate(10, 0)` = `100.0`
   - `successRate(0, 0)` = `0.0`
